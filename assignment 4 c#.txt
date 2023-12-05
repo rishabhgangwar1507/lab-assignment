@@ -1,0 +1,537 @@
+Assignment(4)
+(1)
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace wk_4_1{
+    internal class Program{
+        public int balance;
+        public int Balance{
+            get{
+                return balance;
+            }
+            set{
+                if (value < 0){
+                    throw new Exception("Balance Cannot be Nagative");
+                }
+                else{
+                    balance = value;
+                }
+            }
+        }
+        public void withdwral(int x){
+            if (this.balance < x){
+                Console.WriteLine("Your Bank Balance isn't  sufficient for withdrwal the amount");
+            }
+            else{
+                balance -= x;
+            }
+        }
+        static void Main(string[] args){
+            int y, g;
+            Program obj = new Program();
+            Console.WriteLine("Enter Amount to deposit");
+            g = int.Parse(Console.ReadLine());
+
+            obj.Balance = g;
+            Console.WriteLine(obj.Balance);
+            Console.WriteLine("Enter amount For withdral");
+            y = int.Parse(Console.ReadLine());
+            obj.withdwral(y);
+            Console.WriteLine(obj.Balance);
+           // Console.Read();
+
+        }
+    }
+}
+
+(2)
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace wk4_2
+{
+    internal class Program
+    {
+        public string name, model, year;
+        public string Car
+        {
+            get
+            {
+                return (name + " " + model + " " + year);
+            }
+            set
+            {
+                name = value;
+                model = value;
+                year = value;
+            }
+        }
+        static void Main(string[] args)
+        {
+            Program obj = new Program();
+            obj.name = "Toyota";
+            obj.model = "camry";
+            obj.year = "2022";
+            Console.WriteLine(obj.Car);
+            Console.Read();
+
+        }
+    }
+
+}
+(3)
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace wk_4_3
+{
+    internal class Program
+    {
+        public string fname, lname;
+        public string Person
+        {
+            get
+            {
+                return (fname.ToUpper() + " " + lname.ToUpper());
+            }
+            set
+            {
+                fname = value;
+                lname = value;
+            }
+        }
+        static void Main(string[] args)
+        {
+            string fn, ln;
+            Console.WriteLine("Enter first name");
+            fn = Console.ReadLine();
+            Console.WriteLine("Enter last name");
+            ln = Console.ReadLine();
+            Program obj = new Program();
+            obj.fname = fn;
+            obj.lname = ln;
+            Console.WriteLine(obj.Person);
+            Console.Read();
+        }
+    }
+
+}
+(4)
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace wk_4_4
+{
+    public class TemperatureConverter
+    {
+        private double celsius;
+
+        public double Celsius
+        {
+            get { return celsius; }
+            set { celsius = value; }
+        }
+
+        public double Fahrenheit
+        {
+            get
+            {
+                return (celsius * 9 / 5) + 32;
+            }
+        }
+    }
+
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            TemperatureConverter converter = new TemperatureConverter();
+
+            converter.Celsius = 25;
+
+            double fahrenheit = converter.Fahrenheit;
+
+            Console.WriteLine($"Celsius: {converter.Celsius}°C");
+            Console.WriteLine($"Fahrenheit: {fahrenheit}°F");
+        }
+    }
+
+}
+(5)
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace wk_4_5
+{
+    class customlist<T>
+    {
+        private T[] arr = new T[100];
+        public T this[int i]
+        {
+            get { return arr[i]; }
+            set { arr[i] = value; }
+        }
+    }
+
+    class mca
+    {
+        int id;
+        string name;
+        public object this[int index]
+        {
+            get
+            {
+                if (index == 1)
+                    return name;
+                else
+                    return id;
+            }
+            set
+            {
+                if (index == 1)
+                    name = value.ToString();
+                else
+                    id = (int)value;
+            }
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var list = new customlist<string>();
+            list[2] = "Hello Guru!";
+            list[5] = "I am From Mathura";
+
+            Console.WriteLine(list[2]);
+            Console.WriteLine(list[5]);
+            Console.Read();
+        }
+    }
+}
+(6)
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace wk_4_6
+{
+    public class SimpleStack<T>
+    {
+        private T[] items;
+        private int top;
+
+        public SimpleStack(int capacity)
+        {
+            items = new T[capacity];
+            top = -1;
+        }
+
+        public int Count
+        {
+            get { return top + 1; }
+        }
+
+        public bool IsEmpty
+        {
+            get { return top == -1; }
+        }
+
+        public void Push(T item)
+        {
+            if (top == items.Length - 1)
+            {
+
+                Array.Resize(ref items, items.Length * 2);
+            }
+
+            top++;
+            items[top] = item;
+        }
+
+        public T Pop()
+        {
+            if (IsEmpty)
+            {
+                throw new Exception("Stack is empty.");
+            }
+
+            T poppedItem = items[top];
+            top--;
+            return poppedItem;
+        }
+
+
+        public T this[int index]
+        {
+            get
+            {
+                if (index < 0 || index > top)
+                {
+                    throw new Exception("Index is out of range.");
+                }
+
+                return items[index];
+            }
+        }
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            SimpleStack<int> stack = new SimpleStack<int>(4);
+
+            stack.Push(1);
+            stack.Push(2);
+            stack.Push(3);
+
+            Console.WriteLine("Stack elements using indexer:");
+            for (int i = 0; i < stack.Count; i++)
+            {
+                Console.WriteLine($"Index {i}: {stack[i]}");
+            }
+
+            Console.WriteLine("Popping elements from the stack:");
+            while (!stack.IsEmpty)
+            {
+                Console.WriteLine($"Popped: {stack.Pop()}");
+            }
+            Console.Read();
+        }
+    }
+
+
+}
+(8)
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace wk_4_8
+{
+    public enum Season
+    {
+        Spring,
+        Summer,
+        Autumn,
+        Winter
+    }
+
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            Season currentSeason = Season.Summer;
+
+            switch (currentSeason)
+            {
+                case Season.Spring:
+                    Console.WriteLine("It's Spring! Flowers are blooming.");
+                    break;
+                case Season.Summer:
+                    Console.WriteLine("It's Summer! Enjoy the warm weather.");
+                    break;
+                case Season.Autumn:
+                    Console.WriteLine("It's Autumn! The leaves are changing color.");
+                    break;
+                case Season.Winter:
+                    Console.WriteLine("It's Winter! Time for snow and cold weather.");
+                    break;
+                default:
+                    Console.WriteLine("Unknown season.");
+                    break;
+
+            }
+            Console.Read();
+        }
+    }
+}
+(9)
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace wk_4_9
+{
+    public enum ShapeType
+    {
+        Circle,
+        Square,
+        Triangle
+    }
+
+    public class Geometry
+    {
+        public static double CalculateArea(ShapeType shape, double[] parameters)
+        {
+            switch (shape)
+            {
+                case ShapeType.Circle:
+                    if (parameters.Length < 1)
+                        throw new ArgumentException("Circle requires the radius as a parameter.");
+                    double radius = parameters[0];
+                    return 3.14 * Math.Pow(radius, 2);
+
+                case ShapeType.Square:
+                    if (parameters.Length < 1)
+                        throw new ArgumentException("Square requires the side length as a parameter.");
+                    double sideLength = parameters[0];
+                    return Math.Pow(sideLength, 2);
+
+                case ShapeType.Triangle:
+                    if (parameters.Length < 2)
+                        throw new ArgumentException("Triangle requires the base and height as parameters.");
+                    double baseLength = parameters[0];
+                    double height = parameters[1];
+                    return 0.5 * baseLength * height;
+
+                default:
+                    throw new ArgumentException("Unknown shape type.");
+            }
+        }
+    }
+
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            ShapeType shape = ShapeType.Circle;
+            double[] parameters = { 5.0 }; 
+
+            double area = Geometry.CalculateArea(shape, parameters);
+
+            Console.WriteLine($"The area of the {shape} is: {area}");
+            Console.Read();
+        }
+    }
+
+}
+
+(7)
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace wk_4_7
+{
+    public class Book
+    {
+        public string Title { get; set; }
+        public string Author { get; set; }
+
+        public Book(string title, string author)
+        {
+            Title = title;
+            Author = author;
+        }
+    }
+
+    public class Bookshelf
+    {
+        private List<Book> books = new List<Book>();
+
+
+        public Book this[string title]
+        {
+            get
+            {
+                return books.Find(book => book.Title == title);
+            }
+        }
+
+        public void AddBook(Book book)
+        {
+            books.Add(book);
+        }
+
+        public void RemoveBook(Book book)
+        {
+            books.Remove(book);
+        }
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Bookshelf bookshelf = new Bookshelf();
+
+
+            bookshelf.AddBook(new Book("Book 1", "Author 1"));
+            bookshelf.AddBook(new Book("Book 2", "Author 2"));
+            bookshelf.AddBook(new Book("Book 3", "Author 3"));
+
+
+            Book book = bookshelf["Book 2"];
+
+            if (book != null)
+            {
+                Console.WriteLine($"Title: {book.Title}, Author: {book.Author}");
+            }
+            else
+            {
+                Console.WriteLine("Book not found.");
+            }
+            Console.Read();
+        }
+    }
+
+}
+(10)
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace wk_4_10
+{
+
+    [Flags]
+    enum FilePermission
+    {
+        None = 0,
+        Read = 1,
+        Write = 2,
+        Execute = 4
+    }
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            FilePermission userPermissions = FilePermission.Read | FilePermission.Write;
+
+            bool hasWritePermission = (userPermissions & FilePermission.Write) == FilePermission.Write;
+
+            Console.WriteLine($"User has Read permission: {(userPermissions & FilePermission.Read) == FilePermission.Read}");
+            Console.WriteLine($"User has Write permission: {hasWritePermission}");
+            Console.WriteLine($"User has Execute permission: {(userPermissions & FilePermission.Execute) == FilePermission.Execute}");
+        }
+    }
+
+}
