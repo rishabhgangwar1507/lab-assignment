@@ -1,0 +1,374 @@
+Assignment 2
+﻿(1)
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Console_Lab2_Exercise_01
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Employee emp = new Employee();
+            emp.display();
+            Console.ReadLine();
+        }
+        public class Employee
+        {
+            int age;
+            string name;
+            double salary;
+            public void display()
+            {
+                name = "Gopal Soni";
+                age = 22;
+                salary = 45000;
+                Console.WriteLine("Name of Employee: " + name + "\n Age of Employee: " + age + "\n Salary of Employee: " + salary);
+            }
+        }
+    }
+}
+(2)
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Console_Lab2_Exercise_02
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            BankAccount account = new BankAccount();
+            account.display();
+            Console.ReadLine();
+        }
+        public class BankAccount
+        {
+            double account_number;
+            string account_holdername;
+            double account_balance = 50000;          
+            double addmoney = 80000;
+            double withdrawalmoney = 8000;
+            public void deposit()
+            {
+                account_balance += addmoney;
+            }
+            public void withdrawal()
+            {
+                account_balance -= withdrawalmoney;
+            }
+            public void display()
+            {
+                Console.WriteLine("Add some money to your account: " + addmoney);
+                Console.WriteLine("deducted some money to your account: " + withdrawalmoney);
+                Console.WriteLine("Money after deposit: " + (account_balance + addmoney));
+                Console.WriteLine("Money after withdrawal: " + (account_balance - withdrawalmoney));
+            }
+        }
+    }
+}
+(3)
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Console_Lab2_Exercise_03
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            MathHelper.Calculateaverage();
+            Console.ReadLine();
+        }
+        public static class MathHelper
+        {
+            public static void Calculateaverage()
+            {
+                int[] arr = { 4, 5, 6, 7, 78 };
+                int sum = 0;
+                double average;
+                for(int i=0;i<arr.Length; i++)
+                {
+                    sum += arr[i];
+                }
+                average = sum /(arr.Length);
+                Console.WriteLine("Average: "+average);
+            }
+        }
+    }
+}
+(4)
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Console_Lab2_Exercise_04
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Logger.LogMessage();
+            Console.ReadLine();
+        }
+        public static class Logger
+        {
+            public static void LogMessage()
+            {
+                Console.WriteLine("This is static method");
+            }
+        }
+    }
+}
+(5)
+﻿using System;
+using ns;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using System.Threading.Tasks;
+
+namespace Console_Lab2_Exercise_05
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Person person = new Person();
+            person.FirstName = "Gopal";
+            person.LastName = "soni";
+            person.PrintFullName();
+        }
+        public partial class Person
+
+        {
+            public void PrintFullName()
+            {
+                Console.WriteLine($"{FirstName}{LastName}");
+            }
+        }
+
+    }
+}
+(6)
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Console_Lab2_Exercise_06
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Employee employee = new Employee();
+            employee.salary();
+            Console.ReadLine();
+
+        }
+        partial class Employee
+        {
+            string employee_name = "Gopal Soni";
+            string emmployee_address = "Gandhi chawk mathura";
+            int employee_age = 22;
+            string employee_profile = "Full Stack Developer";
+        }
+        partial class Employee
+        {
+            public void salary()
+            {
+                Console.WriteLine("Salary based on emp job profile and experience:");
+                Console.WriteLine(employee_name + " salary is: 45000");
+            }
+        }
+    }
+}
+(7)
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Console_Lab2_Exercise_06
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Employee employee = new Employee();
+            employee.salary();
+            Console.ReadLine();
+
+        }
+        partial class Employee
+        {
+            string employee_name = "Gopal Soni";
+            string emmployee_address = "Gandhi chawk mathura";
+            int employee_age = 22;
+            string employee_profile = "Full Stack Developer";
+        }
+        partial class Employee
+        {
+            public void salary()
+            {
+                Console.WriteLine("Salary based on emp job profile and experience:");
+                Console.WriteLine(employee_name + " salary is: 45000");
+            }
+        }
+    }
+}
+(8)
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Console_Lab2_Exercise_08
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Dog dog = new Dog { name = "Jack", age = 2 };
+            Cat cat = new Cat { name = "canel", age = 1 };
+            Console.WriteLine("Dog name is: "+dog.display_name());
+            Console.WriteLine("Dog age is: " + dog.display_age());
+            Console.WriteLine("Cat name is: " + cat.display_name());
+            Console.WriteLine("Cat age is: " + cat.display_age());
+            Console.ReadKey();
+        }
+        abstract class Animal
+        {
+            public abstract string display_name();
+            public abstract int display_age();
+        }
+        class Dog : Animal
+        {
+            public string name
+            {
+                get; set;
+            }
+            public int age
+            {
+                get; set;
+            }
+            public override string display_name()
+            {
+                return name; 
+            }
+            public override int display_age()
+            {
+                return age;
+            }
+        }
+        class Cat : Animal
+        {
+            public string name
+            {
+                get; set;
+            }
+            public int age
+            {
+                get; set;
+            }
+            public override string display_name()
+            {
+                return name;
+            }
+            public override int display_age()
+            {
+                return age;
+            }
+        }
+    }
+}
+(9)
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Console_Lab2_Exercise_09
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Car car = new Car();
+            car.start_engine();
+            car.stop_engine();
+            Console.ReadLine();
+        }
+        class Vehicle
+        {
+            public void start_engine()
+            {
+                Console.WriteLine("Engine has started");
+            }
+            public void stop_engine()
+            {
+                Console.WriteLine("Engine has stopped");
+            }
+        }
+        sealed class Car : Vehicle
+        {
+            public Car()
+            {
+                Console.WriteLine("car");
+
+            }
+        }
+    }
+}
+(10)
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Console_Lab2_Exercise_10
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Saving_Account account = new Saving_Account();
+            account.Interest(80000,10.5);
+            Console.ReadLine();
+        }
+        class BankAccount 
+        {
+            public BankAccount()
+            {
+                int Account_number = 8989565;
+                double Balance = 85000.95;
+            } 
+        }
+        sealed class Saving_Account : BankAccount
+        {
+           
+            public void Interest(double Balance,double rate)
+            {
+                Console.WriteLine("Your Interest: "+(rate * Balance)); 
+            }
+        }
+    }
+}
